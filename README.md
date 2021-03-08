@@ -9,4 +9,4 @@ Project is backed by spring-data-aerospike:
 
 https://github.com/aerospike-community/spring-data-aerospike
 
-.
+test
