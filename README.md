@@ -8,5 +8,3 @@ https://medium.com/aerospike-developer-blog/simple-web-application-using-java-sp
 Project is backed by spring-data-aerospike:
 
 https://github.com/aerospike-community/spring-data-aerospike
-
-test
