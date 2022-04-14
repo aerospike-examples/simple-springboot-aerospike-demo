@@ -2,13 +2,14 @@ package com.aerospike.demo.simplespringbootaerospikedemo.objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.aerospike.mapping.Document;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document
 @AllArgsConstructor
-public class User {
+public class UserMongo {
+
     @Id
     private int id;
     private String name;
