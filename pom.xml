@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.0.1</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.aerospike.demo</groupId>
 	<artifactId>simple-springboot-aerospike-demo</artifactId>
@@ -14,7 +14,10 @@
 	<name>simple-springboot-aerospike-demo</name>
 	<description>Simple web application demo using Java Spring-Boot, AerospikeDB and Docker</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
+		<lombok>1.18.24</lombok>
+		<spring-data-aerospike>4.0.0</spring-data-aerospike>
+		<spring-boot-starter-test>3.0.2</spring-boot-starter-test>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -24,16 +27,18 @@
 		<dependency>
 			<groupId>com.aerospike</groupId>
 			<artifactId>spring-data-aerospike</artifactId>
-			<version>2.4.0.RELEASE</version>
+			<version>${spring-data-aerospike}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>${lombok}</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring-boot-starter-test}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
