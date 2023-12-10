@@ -122,7 +122,7 @@ public class ComparePreviousVersionsTest {
     }
 
     @Test
-    void findByField() {
+    void findByFields() {
         int batchSize = 200000;
         LocalTime start;
         LocalTime end;
