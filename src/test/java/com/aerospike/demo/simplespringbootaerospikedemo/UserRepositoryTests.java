@@ -22,7 +22,7 @@ class UserRepositoryTests extends SimpleSpringbootAerospikeDemoApplicationTests 
     void setUp() {
         id = new Random().nextInt();
         age = new Random().nextInt(1, 50);
-        user = new User(id, "Michael", "m@abc.com", age);
+        user = new User(id, "Michael", "m@abc.com", age, new byte[]{1, 2, 3, 4, 5, 6});
     }
 
     @Test

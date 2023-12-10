@@ -17,11 +17,15 @@ public class UserService {
         return aerospikeUserRepository.findById(id);
     }
 
-    public void addUser(User user) {
+    public void addOrUpdateUser(User user) {
         aerospikeUserRepository.save(user);
     }
 
     public void removeUserById(int id) {
         aerospikeUserRepository.deleteById(id);
+    }
+
+    public void truncate() {
+        aerospikeUserRepository.deleteAll();
     }
 }

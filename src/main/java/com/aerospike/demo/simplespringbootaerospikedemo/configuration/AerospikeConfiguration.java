@@ -1,7 +1,7 @@
 package com.aerospike.demo.simplespringbootaerospikedemo.configuration;
 
-import com.aerospike.demo.simplespringbootaerospikedemo.repositories.AerospikeUserRepository;
 import com.aerospike.client.Host;
+import com.aerospike.demo.simplespringbootaerospikedemo.repositories.AerospikeUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
