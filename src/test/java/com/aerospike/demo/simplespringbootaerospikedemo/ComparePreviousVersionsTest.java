@@ -122,7 +122,7 @@ public class ComparePreviousVersionsTest {
     }
 
     @Test
-    void findByAgeLT() {
+    void findByField() {
         int batchSize = 200000;
         LocalTime start;
         LocalTime end;
@@ -130,16 +130,29 @@ public class ComparePreviousVersionsTest {
         userService.truncate();
 
         System.out.println("-------------------------- Aerospike Spring FindByField Test ---------------------------");
-        System.out.println("----------------- Adding " + batchSize + " users (In parallel)... -----------------");
+        System.out.println("----------------- Adding " + batchSize + " users (In parallel) -----------------");
         IntStream.range(0, batchSize).parallel().forEach(i ->
-                userService.addOrUpdateUser(new User(i, "username" + i, "usernameNew" + i + "@gmail.com",
+                userService.addOrUpdateUser(new User(i, "username" + i, "username" + i + "@gmail.com",
                         (int) (Math.random() * 81 + 20), new byte[]{1, 2, 3, 4, 5, 6})));
 
-        System.out.println("-------------------------- Find By Age LT user ---------------------------");
+        System.out.println("-------------------------- Find By Age LT ---------------------------");
         start = LocalDateTime.now().toLocalTime();
         System.out.println("\nStart time:\n" + start + "\n");
 
         List<User> result = userService.findByAgeLessThan(50);
+        System.out.println("Result size: " + result.size() + "\n");
+
+        end = LocalDateTime.now().toLocalTime();
+        System.out.println("End time:\n" + end + "\n");
+        elapsedMillis = Duration.between(start, end).toMillis();
+        System.out.println("Total execution time in milliseconds:\n" + elapsedMillis + "\n");
+
+        System.out.println("-------------------------- Find By Email Starts With ---------------------------");
+        start = LocalDateTime.now().toLocalTime();
+        System.out.println("\nStart time:\n" + start + "\n");
+
+        // String secondary index does not support "starts with" queries, so it results in a scan
+        result = userService.findByEmailStartsWith("username111");
         System.out.println("Result size: " + result.size() + "\n");
 
         end = LocalDateTime.now().toLocalTime();
