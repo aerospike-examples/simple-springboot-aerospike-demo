@@ -14,6 +14,7 @@ public class User {
     @Id
     private int id;
     private String name;
+    @Indexed(type = IndexType.STRING)
     private String email;
     @Indexed(type = IndexType.NUMERIC)
     private int age;

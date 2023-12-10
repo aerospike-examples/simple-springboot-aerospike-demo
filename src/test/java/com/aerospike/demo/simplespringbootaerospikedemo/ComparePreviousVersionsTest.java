@@ -147,6 +147,18 @@ public class ComparePreviousVersionsTest {
         elapsedMillis = Duration.between(start, end).toMillis();
         System.out.println("Total execution time in milliseconds:\n" + elapsedMillis + "\n");
 
+        System.out.println("-------------------------- Find By Email Equals ---------------------------");
+        start = LocalDateTime.now().toLocalTime();
+        System.out.println("\nStart time:\n" + start + "\n");
+
+        result = userService.findByEmail("username111@gmail.com");
+        System.out.println("Result size: " + result.size() + "\n");
+
+        end = LocalDateTime.now().toLocalTime();
+        System.out.println("End time:\n" + end + "\n");
+        elapsedMillis = Duration.between(start, end).toMillis();
+        System.out.println("Total execution time in milliseconds:\n" + elapsedMillis + "\n");
+
         System.out.println("-------------------------- Find By Email Starts With ---------------------------");
         start = LocalDateTime.now().toLocalTime();
         System.out.println("\nStart time:\n" + start + "\n");

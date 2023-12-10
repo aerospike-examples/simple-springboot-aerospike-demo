@@ -34,6 +34,10 @@ public class UserService {
         return aerospikeUserRepository.findByAgeLessThan(age);
     }
 
+    public List<User> findByEmail(String email) {
+        return aerospikeUserRepository.findByEmail(email);
+    }
+
     public List<User> findByEmailStartsWith(String emailPrefix) {
         return aerospikeUserRepository.findByEmailStartsWith(emailPrefix);
     }

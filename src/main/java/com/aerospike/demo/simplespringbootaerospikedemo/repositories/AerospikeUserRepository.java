@@ -9,6 +9,6 @@ import java.util.List;
 public interface AerospikeUserRepository extends AerospikeRepository<User, Integer>, CrudRepository<User, Integer> {
 
     List<User> findByAgeLessThan(int age);
-
+    List<User> findByEmail(String email);
     List<User> findByEmailStartsWith(String emailPrefix);
 }
