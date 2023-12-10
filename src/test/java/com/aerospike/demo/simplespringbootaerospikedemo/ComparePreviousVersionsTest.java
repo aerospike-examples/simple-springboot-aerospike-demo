@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -18,14 +19,14 @@ public class ComparePreviousVersionsTest {
     UserService userService;
 
     @Test
-    void crudOpsMeasureTimes() {
+    void crudOps() {
         int batchSize = 200000;
         LocalTime start;
         LocalTime end;
         long elapsedSeconds;
         userService.truncate();
 
-        System.out.println("-------------------------- Aerospike Spring Test ---------------------------");
+        System.out.println("-------------------------- Aerospike Spring CRUD Test ---------------------------");
         System.out.println("-------------------------- Add user ---------------------------");
         start = LocalDateTime.now().toLocalTime();
         System.out.println("\nStart time:\n" + start + "\n");
@@ -118,5 +119,32 @@ public class ComparePreviousVersionsTest {
         System.out.println("End time:\n" + end + "\n");
         elapsedSeconds = Duration.between(start, end).toSeconds();
         System.out.println("Total execution time in seconds:\n" + elapsedSeconds + "\n");
+    }
+
+    @Test
+    void findByAgeLT() {
+        int batchSize = 200000;
+        LocalTime start;
+        LocalTime end;
+        long elapsedMillis;
+        userService.truncate();
+
+        System.out.println("-------------------------- Aerospike Spring FindByField Test ---------------------------");
+        System.out.println("----------------- Adding " + batchSize + " users (In parallel)... -----------------");
+        IntStream.range(0, batchSize).parallel().forEach(i ->
+                userService.addOrUpdateUser(new User(i, "username" + i, "usernameNew" + i + "@gmail.com",
+                        (int) (Math.random() * 81 + 20), new byte[]{1, 2, 3, 4, 5, 6})));
+
+        System.out.println("-------------------------- Find By Age LT user ---------------------------");
+        start = LocalDateTime.now().toLocalTime();
+        System.out.println("\nStart time:\n" + start + "\n");
+
+        List<User> result = userService.findByAgeLessThan(50);
+        System.out.println("Result size: " + result.size() + "\n");
+
+        end = LocalDateTime.now().toLocalTime();
+        System.out.println("End time:\n" + end + "\n");
+        elapsedMillis = Duration.between(start, end).toMillis();
+        System.out.println("Total execution time in milliseconds:\n" + elapsedMillis + "\n");
     }
 }

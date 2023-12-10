@@ -5,6 +5,7 @@ import com.aerospike.demo.simplespringbootaerospikedemo.repositories.AerospikeUs
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +28,9 @@ public class UserService {
 
     public void truncate() {
         aerospikeUserRepository.deleteAll();
+    }
+
+    public List<User> findByAgeLessThan(int age) {
+        return aerospikeUserRepository.findByAgeLessThan(age);
     }
 }

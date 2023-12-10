@@ -1,7 +1,9 @@
 package com.aerospike.demo.simplespringbootaerospikedemo.objects;
 
+import com.aerospike.client.query.IndexType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.aerospike.annotation.Indexed;
 import org.springframework.data.aerospike.mapping.Document;
 import org.springframework.data.annotation.Id;
 
@@ -13,6 +15,7 @@ public class User {
     private int id;
     private String name;
     private String email;
+    @Indexed(type = IndexType.NUMERIC)
     private int age;
     private byte[] content;
 }
