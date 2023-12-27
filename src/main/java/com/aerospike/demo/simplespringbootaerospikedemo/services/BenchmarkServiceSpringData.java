@@ -32,21 +32,7 @@ public class BenchmarkServiceSpringData implements BenchmarkService {
         userServiceSpringData.truncate();
 
         log.info("-------------------------- CRUD Benchmark - Spring Data Aerospike ---------------------------");
-        log.info("-------------------------- Add user ---------------------------");
-        start = LocalDateTime.now().toLocalTime();
-        log.info("Start time: " + start);
-        for (int i = 0; i < batchSize; i++) {
-            userServiceSpringData.addOrUpdateUser(new User(i, "Username" + i, "username" + i + "@gmail.com",
-                    (int) (Math.random() * 81 + 20), new byte[]{1, 2, 3, 4, 5, 6}));
-        }
-        end = LocalDateTime.now().toLocalTime();
-        log.info("End time: " + end);
-        elapsedSeconds = Duration.between(start, end).toSeconds();
-        log.info("Total execution time in seconds: " + elapsedSeconds);
-
-        userServiceSpringData.truncate();
-
-        log.info("----------------- Parallel add user -----------------");
+        log.info("----------------- Add users (Parallel) -----------------");
         start = LocalDateTime.now().toLocalTime();
         log.info("Parallel start time: " + start);
         IntStream.range(0, batchSize).parallel().forEach(i ->
@@ -57,18 +43,7 @@ public class BenchmarkServiceSpringData implements BenchmarkService {
         elapsedSeconds = Duration.between(start, end).toSeconds();
         log.info("Total execution time in seconds: " + elapsedSeconds);
 
-        log.info("-------------------------- Read user ---------------------------");
-        start = LocalDateTime.now().toLocalTime();
-        log.info("Start time: " + start);
-        for (int i = 0; i < batchSize; i++) {
-            userServiceSpringData.readUserById(i);
-        }
-        end = LocalDateTime.now().toLocalTime();
-        log.info("End time: " + end);
-        elapsedSeconds = Duration.between(start, end).toSeconds();
-        log.info("Total execution time in seconds: " + elapsedSeconds);
-
-        log.info("-------------------------- Parallel read user ---------------------------");
+        log.info("-------------------------- Read users (Parallel) ---------------------------");
         start = LocalDateTime.now().toLocalTime();
         log.info("Start time: " + start);
         IntStream.range(0, batchSize).parallel().forEach(i -> userServiceSpringData.readUserById(i));
@@ -77,19 +52,7 @@ public class BenchmarkServiceSpringData implements BenchmarkService {
         elapsedSeconds = Duration.between(start, end).toSeconds();
         log.info("Total execution time in seconds: " + elapsedSeconds);
 
-        log.info("-------------------------- Update user ---------------------------");
-        start = LocalDateTime.now().toLocalTime();
-        log.info("Start time: " + start);
-        for (int i = 0; i < batchSize; i++) {
-            userServiceSpringData.addOrUpdateUser(new User(i, "username" + i, "usernameNew" + i + "@gmail.com",
-                    (int) (Math.random() * 81 + 20), new byte[]{1, 2, 3, 4, 5, 6}));
-        }
-        end = LocalDateTime.now().toLocalTime();
-        log.info("End time: " + end);
-        elapsedSeconds = Duration.between(start, end).toSeconds();
-        log.info("Total execution time in seconds: " + elapsedSeconds);
-
-        log.info("-------------------------- Parallel update user ---------------------------");
+        log.info("-------------------------- Update users (Parallel) ---------------------------");
         start = LocalDateTime.now().toLocalTime();
         log.info("Start time: " + start);
         IntStream.range(0, batchSize).parallel().forEach(i ->
@@ -100,23 +63,7 @@ public class BenchmarkServiceSpringData implements BenchmarkService {
         elapsedSeconds = Duration.between(start, end).toSeconds();
         log.info("Total execution time in seconds: " + elapsedSeconds);
 
-        log.info("-------------------------- Delete user by id ---------------------------");
-        start = LocalDateTime.now().toLocalTime();
-        log.info("Start time: " + start);
-        for (int i = 0; i < batchSize; i++) {
-            userServiceSpringData.removeUserById(i);
-        }
-        end = LocalDateTime.now().toLocalTime();
-        log.info("End time: " + end);
-        elapsedSeconds = Duration.between(start, end).toSeconds();
-        log.info("Total execution time in seconds: " + elapsedSeconds);
-
-        // Insert again to test delete parallel
-        IntStream.range(0, batchSize).parallel().forEach(i ->
-                userServiceSpringData.addOrUpdateUser(new User(i, "username" + i, "usernameNew" + i + "@gmail.com",
-                        (int) (Math.random() * 81 + 20), new byte[]{1, 2, 3, 4, 5, 6})));
-
-        log.info("-------------------------- Parallel delete user by id  ---------------------------");
+        log.info("-------------------------- Delete users by id (Parallel) ---------------------------");
         start = LocalDateTime.now().toLocalTime();
         log.info("Start time: " + start);
         IntStream.range(0, batchSize).parallel().forEach(i -> userServiceSpringData.removeUserById(i));
