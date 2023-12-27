@@ -29,7 +29,7 @@ public class BenchmarkServiceImpl implements BenchmarkService {
         long elapsedSeconds;
         userServiceImpl.truncate();
 
-        log.info("-------------------------- Aerospike Spring CRUD Test ---------------------------");
+        log.info("-------------------------- CRUD Benchmark - Spring Data Aerospike ---------------------------");
         log.info("-------------------------- Add user ---------------------------");
         start = LocalDateTime.now().toLocalTime();
         log.info("\nStart time:\n" + start + "\n");
@@ -130,7 +130,7 @@ public class BenchmarkServiceImpl implements BenchmarkService {
         long elapsedMillis;
         userServiceImpl.truncate();
 
-        log.info("-------------------------- Aerospike Spring FindByField Test ---------------------------");
+        log.info("-------------------------- FindByFields Benchmark - Spring Data Aerospike ---------------------------");
         log.info("----------------- Adding " + batchSize + " users (In parallel) -----------------");
         IntStream.range(0, batchSize).parallel().forEach(i ->
                 userServiceImpl.addOrUpdateUser(new User(i, "username" + i, "username" + i + "@gmail.com",
