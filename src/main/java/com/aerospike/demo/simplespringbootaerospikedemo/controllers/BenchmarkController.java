@@ -1,6 +1,6 @@
 package com.aerospike.demo.simplespringbootaerospikedemo.controllers;
 
-import com.aerospike.demo.simplespringbootaerospikedemo.services.BenchmarkService;
+import com.aerospike.demo.simplespringbootaerospikedemo.services.BenchmarkServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class BenchmarkController {
 
-    BenchmarkService benchmarkService;
+    BenchmarkServiceImpl benchmarkServiceImpl;
 
     @PostMapping("/runBenchmark")
     public void runBenchmark() {
-        benchmarkService.runBenchmark();
+        benchmarkServiceImpl.runBenchmark();
     }
 }
