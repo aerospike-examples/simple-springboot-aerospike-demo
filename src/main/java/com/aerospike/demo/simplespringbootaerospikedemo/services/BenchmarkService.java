@@ -2,5 +2,5 @@ package com.aerospike.demo.simplespringbootaerospikedemo.services;
 
 public interface BenchmarkService {
 
-    void runBenchmark();
+    void runBenchmark(int batchSize);
 }

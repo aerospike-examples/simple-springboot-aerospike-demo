@@ -16,16 +16,14 @@ import java.util.stream.IntStream;
 @AllArgsConstructor
 public class BenchmarkServiceImpl implements BenchmarkService {
 
-    private final int batchSize = 200000;
-
     UserServiceImpl userServiceImpl;
 
-    public void runBenchmark() {
-        runCrudOpsBenchmark();
-        runFindByFieldsBenchmark();
+    public void runBenchmark(int batchSize) {
+        runCrudOpsBenchmark(batchSize);
+        runFindByFieldsBenchmark(batchSize);
     }
 
-    private void runCrudOpsBenchmark() {
+    private void runCrudOpsBenchmark(int batchSize) {
         LocalTime start;
         LocalTime end;
         long elapsedSeconds;
@@ -126,7 +124,7 @@ public class BenchmarkServiceImpl implements BenchmarkService {
         log.info("Total execution time in seconds:\n" + elapsedSeconds + "\n");
     }
 
-    private void runFindByFieldsBenchmark() {
+    private void runFindByFieldsBenchmark(int batchSize) {
         LocalTime start;
         LocalTime end;
         long elapsedMillis;
