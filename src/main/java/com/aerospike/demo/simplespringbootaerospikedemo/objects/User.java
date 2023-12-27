@@ -8,7 +8,7 @@ import org.springframework.data.aerospike.mapping.Document;
 import org.springframework.data.annotation.Id;
 
 @Data
-@Document
+@Document(collection = "users")
 @AllArgsConstructor
 public class User {
     @Id
