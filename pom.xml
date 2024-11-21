@@ -1,69 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0</version>
-		<relativePath/>
-	</parent>
-	<groupId>com.aerospike.demo</groupId>
-	<artifactId>simple-springboot-aerospike-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>simple-springboot-aerospike-demo</name>
-	<description>Simple web application demo using Java Spring-Boot, AerospikeDB and Docker</description>
-	<properties>
-		<java.version>17</java.version>
-		<lombok>1.18.32</lombok>
-		<spring-data-aerospike>4.8.0</spring-data-aerospike>
-		<spring-boot-starter-test>3.3.0</spring-boot-starter-test>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.0</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.aerospike.demo</groupId>
+    <artifactId>simple-springboot-aerospike-demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>simple-springboot-aerospike-demo</name>
+    <description>Simple web application demo using Java Spring-Boot, AerospikeDB and Docker</description>
+    <properties>
+        <java.version>17</java.version>
+        <lombok>1.18.32</lombok>
+        <spring-data-aerospike>5.0.0-MRT-alpha</spring-data-aerospike>
+        <spring-boot-starter-test>3.3.0</spring-boot-starter-test>
+    </properties>
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>jfrog</id>
+            <name>maven</name>
+            <url>https://artifact.aerospike.io/artifactory/maven</url>
+        </repository>
+        <repository>
+            <snapshots />
+            <id>snapshots</id>
+            <name>maven</name>
+            <url>https://artifact.aerospike.io/artifactory/maven</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.aerospike</groupId>
+            <artifactId>spring-data-aerospike</artifactId>
+            <version>5.0.0-MRT-alpha3.10</version>
+            <classifier>jar-with-dependencies</classifier>            <!-- This tells Maven about the suffix of the jar with dependencies -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- <dependency>
 			<groupId>com.aerospike</groupId>
 			<artifactId>spring-data-aerospike</artifactId>
 			<version>${spring-data-aerospike}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${lombok}</version>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>${spring-boot-starter-test}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+		</dependency> -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot-starter-test}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<argLine>--add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.math=ALL-UNNAMED</argLine>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>--add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.math=ALL-UNNAMED</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
